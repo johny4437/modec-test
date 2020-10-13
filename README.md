@@ -2,11 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
- 
-if you are using npm to install all dependencies.
+To run the project you need first instal all dependencies, to do this just run the commands bellow:
+
+if you are using npm.
 ```bash
-yarn install 
+npm install 
 ```
 If you are using yarn run.
 ```bash
@@ -27,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-`##Observatio`
+## Observation
 This app is using the  API  [https://home.openweathermap.org/](https://home.openweathermap.org/) to get the wheater information. 
 And for the Map is using  the google map API that you can get more information here: [https://cloud.google.com/maps-platform](https://cloud.google.com/maps-platform).
 Because  in this app it is necessary to use the google map api key and the Wheater api key.
