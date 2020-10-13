@@ -3,6 +3,7 @@ import { GoogleMap, withScriptjs, withGoogleMap, Marker} from 'react-google-maps
 import axios from 'axios';
 import { useHistory, Link} from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
+import { WEATER_API_KEY} from '../../keys'
 
 // STYLE CSS
 import './style.css'
@@ -10,15 +11,15 @@ import './style.css'
 function Map(){
     const history = useHistory()
     const [coordinates, setCoordinates] = React.useState({
-          latitude: -34.397,
-          longitude: 150.644
+          latitude: 37.78825,
+          longitude: -122.4324
     });
-
     const [showName, setShowName] = React.useState(false)
     const [cities, setCities] =  React.useState([])
+    
     const {latitude, longitude} = coordinates;
     
-
+   
 
 
     
@@ -30,14 +31,13 @@ function Map(){
         const latitude = event.latLng.lat();
         const longitude = event.latLng.lng()
   
-        console.log(latitude, longitude)
         setCoordinates({
             latitude:latitude,
             longitude:longitude
         })
     }
     const getWheater = async ()=>{
-        const url = `http://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=15&APPID=a9b88c94f977eb26eef4c7cfd359b2cd`
+        const url = `http://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=15&APPID=${WEATER_API_KEY}`
         const response = await axios.get(url)
         setCities(response.data.list)
         setShowName(true)
@@ -51,21 +51,23 @@ function Map(){
         
     }
     
-    
     return(
         <div  className="container">
             <div className="map-component">
                     <div className="google-map">
                         <GoogleMap
-                        defaultCenter={{ lat: -34.397, lng: 150.644 }}
-                        defaultZoom={8}>
+                        defaultCenter={{ lat: 37.78825, lng: -122.4324 }}
+                        defaultZoom={8}
+                        >
+                            
                             <Marker
-                            draggable 
+                            draggable={true}
                             position={{ 
                                 lat: latitude, 
                                 lng: longitude
                             }}
-                            onDragEnd={(e)=>onMarkerDragEnd(e)} 
+                            title="Here"
+                            onDragEnd={onMarkerDragEnd} 
                             />
                         </GoogleMap>
                     </div>
@@ -85,7 +87,7 @@ function Map(){
                     { cities.map((c,i)=>(   
                     <div key={i} className="all-cities">
                         <ul>
-                            <li><a href="#"  target="_blank" onClick={()=>selectCity(i)}>{c.name}</a></li>
+                            <li><a href=""   onClick={()=>selectCity(i)}>{c.name}</a></li>
                         </ul>
                     </div>
                     ))}

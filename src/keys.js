@@ -1,0 +1,2 @@
+export const GOOGLE_API_KEY = "HERE GOOGLE MAPS API KEY";
+export const WEATER_API_KEY = "HERE WEATER API KEY";
